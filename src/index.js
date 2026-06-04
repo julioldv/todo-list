@@ -2,9 +2,12 @@ import "./styles.css";
 import { createTodo } from "./modules/Todo.js";
 import {
     getProjects, 
-    getActiveProject, 
-    addProject, 
+    getActiveProject,
+    setActiveProject, 
+    addProject,
+    deleteProject, 
     addTodoToProject,
+    deleteTodo,
 } from "./modules/todoApp.js";
 
 console.log(getProjects());
@@ -19,6 +22,16 @@ const todo1 = createTodo(
 );
 
 addTodoToProject(studyProject.id, todo1);
+
+console.log(getProjects());
+console.log(getActiveProject());
+
+setActiveProject(studyProject.id);
+
+console.log(getProjects());
+console.log(getActiveProject());
+
+deleteTodo(studyProject.id,todo1.id);
 
 console.log(getProjects());
 console.log(getActiveProject());
