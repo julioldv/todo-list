@@ -29,6 +29,10 @@ function renderTodos(project) {
   clearElement(todoList);
 
   for (const todo of project.todos) {
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.dataset.todoId = todo.id;
+
     const card = document.createElement("div");
 
     const title = document.createElement("h2");
@@ -40,7 +44,7 @@ function renderTodos(project) {
     const priority = document.createElement("p");
     priority.textContent = todo.priority;
 
-    card.append(title, dueDate, priority);
+    card.append(title, dueDate, priority, deleteButton);
     todoList.append(card);
   }
 }
@@ -91,6 +95,16 @@ function bindTodoForm(handler) {
   });
 }
 
+function bindTodoDeletion(handler) {
+  todoList.addEventListener("click", (event) => {
+    const deleteButton = event.target.closest("[data-todo-id]");
+
+    if (!deleteButton) return;
+
+    handler(deleteButton.dataset.todoId);
+  });
+}
+
 export {
   renderProjects,
   renderTodos,
@@ -98,4 +112,5 @@ export {
   bindProjectSelection,
   bindProjectForm,
   bindTodoForm,
+  bindTodoDeletion,
 };

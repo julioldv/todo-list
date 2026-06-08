@@ -14,6 +14,7 @@ import {
   bindProjectSelection,
   bindProjectForm,
   bindTodoForm,
+  bindTodoDeletion,
 } from "./modules/dom.js";
 console.log(getProjects());
 
@@ -35,6 +36,11 @@ bindProjectForm((title) => {
 bindTodoForm((title, description, dueDate, priority) => {
   const todo = createTodo(title, description, dueDate, priority);
   addTodoToProject(getActiveProject().id, todo);
+  updateScreen();
+});
+
+bindTodoDeletion((todoId) => {
+  deleteTodo(getActiveProject().id, todoId);
   updateScreen();
 });
 
