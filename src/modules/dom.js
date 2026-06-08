@@ -9,9 +9,10 @@ function clearElement(element) {
 function renderProjects(projects) {
   clearElement(aside);
   for (const project of projects) {
-    const container = document.createElement("button");
-    container.textContent = project.title;
-    aside.append(container);
+    const projectButton = document.createElement("button");
+    projectButton.textContent = project.title;
+    projectButton.dataset.projectId = project.id;
+    aside.append(projectButton);
   }
 }
 
@@ -41,4 +42,14 @@ function renderApp(projects, activeProject) {
   renderTodos(activeProject);
 }
 
-export { renderProjects, renderTodos, renderApp };
+function bindProjectSelection(handler) {
+  aside.addEventListener("click", (event) => {
+    const projectButton = event.target.closest("[data-project-id]");
+
+    if (!projectButton) return;
+
+    handler(projectButton.dataset.projectId);
+  });
+}
+
+export { renderProjects, renderTodos, renderApp, bindProjectSelection };

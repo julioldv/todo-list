@@ -9,8 +9,19 @@ import {
   addTodoToProject,
   deleteTodo,
 } from "./modules/todoApp.js";
-import { renderProjects, renderTodos, renderApp } from "./modules/dom.js";
+import { renderApp, bindProjectSelection } from "./modules/dom.js";
 console.log(getProjects());
+
+function updateScreen() {
+  renderApp(getProjects(), getActiveProject());
+}
+
+bindProjectSelection((projectId) => {
+  setActiveProject(projectId);
+  updateScreen();
+});
+
+updateScreen();
 
 const studyProject = addProject("Study", "Programming tasks");
 
