@@ -24,12 +24,12 @@ function addProject(title, description = "") {
   return project;
 }
 
-function deleteProject(projectId){
-    const index = projects.findIndex(project => project.id === projectId);
-    
-    if(index !== -1){
-        projects.splice(index,1);
-    }
+function deleteProject(projectId) {
+  const index = projects.findIndex((project) => project.id === projectId);
+
+  if (index !== -1) {
+    projects.splice(index, 1);
+  }
 }
 
 function addTodoToProject(projectId, todo) {
@@ -51,7 +51,6 @@ function deleteTodo(projectId, todoId) {
     project.todos.splice(todoIndex, 1);
   }
 }
-
 
 export {
   getProjects,

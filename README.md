@@ -8,33 +8,33 @@ This project allows users to organize tasks into projects, manage priorities and
 
 The main goal of the project is to practice:
 
-* JavaScript modules
-* Object-oriented design
-* Application architecture
-* DOM manipulation
-* State management
-* Data persistence with localStorage
-* Webpack workflow
+- JavaScript modules
+- Object-oriented design
+- Application architecture
+- DOM manipulation
+- State management
+- Data persistence with localStorage
+- Webpack workflow
 
 ## Features
 
-* Create projects
-* Create todos within projects
-* Edit todo details
-* Delete todos
-* Mark todos as completed
-* Set task priorities
-* Store data in localStorage
-* Automatically restore saved data on page reload
+- Create projects
+- Create todos within projects
+- Edit todo details
+- Delete todos
+- Mark todos as completed
+- Set task priorities
+- Store data in localStorage
+- Automatically restore saved data on page reload
 
 ## Built With
 
-* HTML5
-* CSS3
-* JavaScript (ES6 Modules)
-* Webpack
-* localStorage
-* date-fns
+- HTML5
+- CSS3
+- JavaScript (ES6 Modules)
+- Webpack
+- localStorage
+- date-fns
 
 ## Getting Started
 
@@ -84,21 +84,21 @@ src/
 
 Through this project I practiced:
 
-* Designing data models
-* Separating application logic from presentation logic
-* Managing application state
-* Working with browser storage APIs
-* Organizing larger JavaScript projects with modules
-* Using Webpack for development and production builds
+- Designing data models
+- Separating application logic from presentation logic
+- Managing application state
+- Working with browser storage APIs
+- Organizing larger JavaScript projects with modules
+- Using Webpack for development and production builds
 
 ## Future Improvements
 
-* Task filtering by priority
-* Task filtering by due date
-* Search functionality
-* Drag and drop task organization
-* Dark mode
-* Responsive mobile layout
+- Task filtering by priority
+- Task filtering by due date
+- Search functionality
+- Drag and drop task organization
+- Dark mode
+- Responsive mobile layout
 
 ## Screenshots
 
@@ -114,5 +114,5 @@ Coming soon.
 
 This project was completed as part of **The Odin Project** JavaScript curriculum.
 
-* The Odin Project
-* date-fns
+- The Odin Project
+- date-fns

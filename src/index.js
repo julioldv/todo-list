@@ -1,13 +1,13 @@
 import "./styles.css";
 import { createTodo } from "./modules/Todo.js";
 import {
-    getProjects, 
-    getActiveProject,
-    setActiveProject, 
-    addProject,
-    deleteProject, 
-    addTodoToProject,
-    deleteTodo,
+  getProjects,
+  getActiveProject,
+  setActiveProject,
+  addProject,
+  deleteProject,
+  addTodoToProject,
+  deleteTodo,
 } from "./modules/todoApp.js";
 
 console.log(getProjects());
@@ -15,10 +15,10 @@ console.log(getProjects());
 const studyProject = addProject("Study", "Programming tasks");
 
 const todo1 = createTodo(
-    "Study modules",
-    "Review ES modules and imports",
-    "2026-06-05",
-    "high"
+  "Study modules",
+  "Review ES modules and imports",
+  "2026-06-05",
+  "high",
 );
 
 addTodoToProject(studyProject.id, todo1);
@@ -31,7 +31,7 @@ setActiveProject(studyProject.id);
 console.log(getProjects());
 console.log(getActiveProject());
 
-deleteTodo(studyProject.id,todo1.id);
+deleteTodo(studyProject.id, todo1.id);
 
 console.log(getProjects());
 console.log(getActiveProject());
