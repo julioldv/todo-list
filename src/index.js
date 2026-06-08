@@ -9,7 +9,7 @@ import {
   addTodoToProject,
   deleteTodo,
 } from "./modules/todoApp.js";
-
+import { renderProjects, renderTodos, renderApp } from "./modules/dom.js";
 console.log(getProjects());
 
 const studyProject = addProject("Study", "Programming tasks");
@@ -23,15 +23,15 @@ const todo1 = createTodo(
 
 addTodoToProject(studyProject.id, todo1);
 
-console.log(getProjects());
-console.log(getActiveProject());
+// console.log(getProjects());
+// console.log(getActiveProject());
 
 setActiveProject(studyProject.id);
 
-console.log(getProjects());
-console.log(getActiveProject());
+// console.log(getProjects());
+// console.log(getActiveProject());
 
-deleteTodo(studyProject.id, todo1.id);
+// console.log(getProjects());
+// console.log(getActiveProject());
 
-console.log(getProjects());
-console.log(getActiveProject());
+renderApp(getProjects(), getActiveProject());
