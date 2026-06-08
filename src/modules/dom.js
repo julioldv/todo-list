@@ -1,6 +1,8 @@
 const aside = document.querySelector("#project-list");
 const title = document.querySelector("#active-project-title");
 const todoList = document.querySelector("#todo-list");
+const projectForm = document.querySelector("#project-form");
+const projectTitleInput = document.querySelector("#project-title");
 
 function clearElement(element) {
   element.textContent = "";
@@ -52,4 +54,24 @@ function bindProjectSelection(handler) {
   });
 }
 
-export { renderProjects, renderTodos, renderApp, bindProjectSelection };
+function bindProjectForm(handler) {
+  projectForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const title = projectTitleInput.value.trim();
+
+    if (!title) return;
+
+    handler(title);
+
+    projectForm.reset();
+  });
+}
+
+export {
+  renderProjects,
+  renderTodos,
+  renderApp,
+  bindProjectSelection,
+  bindProjectForm,
+};

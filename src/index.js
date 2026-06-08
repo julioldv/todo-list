@@ -9,7 +9,11 @@ import {
   addTodoToProject,
   deleteTodo,
 } from "./modules/todoApp.js";
-import { renderApp, bindProjectSelection } from "./modules/dom.js";
+import {
+  renderApp,
+  bindProjectSelection,
+  bindProjectForm,
+} from "./modules/dom.js";
 console.log(getProjects());
 
 function updateScreen() {
@@ -21,7 +25,11 @@ bindProjectSelection((projectId) => {
   updateScreen();
 });
 
-updateScreen();
+bindProjectForm((title) => {
+  const newProject = addProject(title);
+  setActiveProject(newProject.id);
+  updateScreen();
+});
 
 const studyProject = addProject("Study", "Programming tasks");
 
@@ -33,16 +41,6 @@ const todo1 = createTodo(
 );
 
 addTodoToProject(studyProject.id, todo1);
-
-// console.log(getProjects());
-// console.log(getActiveProject());
-
 setActiveProject(studyProject.id);
 
-// console.log(getProjects());
-// console.log(getActiveProject());
-
-// console.log(getProjects());
-// console.log(getActiveProject());
-
-renderApp(getProjects(), getActiveProject());
+updateScreen();
