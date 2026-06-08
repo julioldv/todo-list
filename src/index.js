@@ -13,6 +13,7 @@ import {
   renderApp,
   bindProjectSelection,
   bindProjectForm,
+  bindTodoForm,
 } from "./modules/dom.js";
 console.log(getProjects());
 
@@ -28,6 +29,12 @@ bindProjectSelection((projectId) => {
 bindProjectForm((title) => {
   const newProject = addProject(title);
   setActiveProject(newProject.id);
+  updateScreen();
+});
+
+bindTodoForm((title, description, dueDate, priority) => {
+  const todo = createTodo(title, description, dueDate, priority);
+  addTodoToProject(getActiveProject().id, todo);
   updateScreen();
 });
 

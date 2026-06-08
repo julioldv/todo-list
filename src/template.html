@@ -19,6 +19,17 @@
         />
         <button type="submit">Add Project</button>
       </form>
+      <form id="todo-form">
+        <input id="todo-title" type="text" placeholder="Todo title" required />
+        <input id="todo-description" type="text" placeholder="Description" />
+        <input id="todo-due-date" type="date" required />
+        <select id="todo-priority" required>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button type="submit">Add Todo</button>
+      </form>
     </main>
   </body>
 </html>

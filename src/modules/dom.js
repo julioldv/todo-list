@@ -1,8 +1,15 @@
 const aside = document.querySelector("#project-list");
 const title = document.querySelector("#active-project-title");
 const todoList = document.querySelector("#todo-list");
+
 const projectForm = document.querySelector("#project-form");
 const projectTitleInput = document.querySelector("#project-title");
+
+const todoForm = document.querySelector("#todo-form");
+const todoTitleInput = document.querySelector("#todo-title");
+const todoDescriptionInput = document.querySelector("#todo-description");
+const todoDueDateInput = document.querySelector("#todo-due-date");
+const todoPriorityInput = document.querySelector("#todo-priority");
 
 function clearElement(element) {
   element.textContent = "";
@@ -68,10 +75,27 @@ function bindProjectForm(handler) {
   });
 }
 
+function bindTodoForm(handler) {
+  todoForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const title = todoTitleInput.value.trim();
+    const description = todoDescriptionInput.value.trim();
+    const dueDate = todoDueDateInput.value;
+    const priority = todoPriorityInput.value;
+
+    if (!title || !description || !dueDate || !priority) return;
+
+    handler(title, description, dueDate, priority);
+    todoForm.reset();
+  });
+}
+
 export {
   renderProjects,
   renderTodos,
   renderApp,
   bindProjectSelection,
   bindProjectForm,
+  bindTodoForm,
 };
