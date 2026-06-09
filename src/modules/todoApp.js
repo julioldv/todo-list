@@ -2,6 +2,7 @@ import { createProject } from "./Project.js";
 
 let projects = [createProject("Default", "General tasks")];
 let activeProjectId = projects[0].id;
+let expandedTodoId = null;
 
 function getProjects() {
   return projects;
@@ -18,6 +19,19 @@ function setActiveProject(projectId) {
     activeProjectId = projectId;
   }
 }
+
+function getExpandedTodo() {
+  return expandedTodoId;
+}
+
+function setExpandedTodo(todoId) {
+  if (expandedTodoId === todoId) {
+    expandedTodoId = null;
+  } else {
+    expandedTodoId = todoId;
+  }
+}
+
 function addProject(title, description = "") {
   const project = createProject(title, description);
   projects.push(project);
@@ -68,6 +82,8 @@ export {
   getProjects,
   getActiveProject,
   setActiveProject,
+  getExpandedTodo,
+  setExpandedTodo,
   addProject,
   deleteProject,
   addTodoToProject,

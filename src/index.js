@@ -4,6 +4,8 @@ import {
   getProjects,
   getActiveProject,
   setActiveProject,
+  getExpandedTodo,
+  setExpandedTodo,
   addProject,
   deleteProject,
   addTodoToProject,
@@ -17,11 +19,12 @@ import {
   bindTodoForm,
   bindTodoDeletion,
   bindTodoCompletion,
+  bindTodoExpansion,
 } from "./modules/dom.js";
 console.log(getProjects());
 
 function updateScreen() {
-  renderApp(getProjects(), getActiveProject());
+  renderApp(getProjects(), getActiveProject(), getExpandedTodo());
 }
 
 bindProjectSelection((projectId) => {
@@ -48,6 +51,11 @@ bindTodoDeletion((todoId) => {
 
 bindTodoCompletion((todoId) => {
   toggleTodoCompleted(getActiveProject().id, todoId);
+  updateScreen();
+});
+
+bindTodoExpansion((todoId) => {
+  setExpandedTodo(todoId);
   updateScreen();
 });
 

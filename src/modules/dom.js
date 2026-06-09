@@ -25,10 +25,12 @@ function renderProjects(projects) {
   }
 }
 
-function renderTodos(project) {
+function renderTodos(project, expandedTodoId) {
   clearElement(todoList);
 
   for (const todo of project.todos) {
+    const isExpanded = todo.id === expandedTodoId;
+
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.dataset.todoId = todo.id;
@@ -39,6 +41,7 @@ function renderTodos(project) {
     completeButton.dataset.completeTodoId = todo.id;
 
     const card = document.createElement("div");
+    card.dataset.expandTodoId = todo.id;
 
     const title = document.createElement("h2");
     title.textContent = todo.title;
@@ -52,22 +55,24 @@ function renderTodos(project) {
     const completed = document.createElement("p");
     completed.textContent = todo.completed ? "Completed" : "Uncompleted";
 
-    card.append(
-      title,
-      dueDate,
-      priority,
-      completed,
-      completeButton,
-      deleteButton,
-    );
+    card.append(title, dueDate, priority);
+    if (isExpanded) {
+      const description = document.createElement("p");
+      description.textContent = todo.description;
+
+      const completed = document.createElement("p");
+      completed.textContent = todo.completed ? "Completed" : "Uncompleted";
+
+      card.append(description, completed, completeButton, deleteButton);
+    }
     todoList.append(card);
   }
 }
 
-function renderApp(projects, activeProject) {
+function renderApp(projects, activeProject, expandedTodoId) {
   title.textContent = activeProject.title;
   renderProjects(projects);
-  renderTodos(activeProject);
+  renderTodos(activeProject, expandedTodoId);
 }
 
 function bindProjectSelection(handler) {
@@ -130,6 +135,18 @@ function bindTodoCompletion(handler) {
   });
 }
 
+function bindTodoExpansion(handler) {
+  todoList.addEventListener("click", (event) => {
+    if (event.target.closest("button")) return;
+
+    const todoCard = event.target.closest("[data-expand-todo-id]");
+
+    if (!todoCard) return;
+
+    handler(todoCard.dataset.expandTodoId);
+  });
+}
+
 export {
   renderProjects,
   renderTodos,
@@ -139,4 +156,5 @@ export {
   bindTodoForm,
   bindTodoDeletion,
   bindTodoCompletion,
+  bindTodoExpansion,
 };
