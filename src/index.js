@@ -6,11 +6,15 @@ import {
   setActiveProject,
   getExpandedTodo,
   setExpandedTodo,
+  getEditingTodoId,
+  setEditingTodo,
+  clearEditingTodo,
   addProject,
   deleteProject,
   addTodoToProject,
   deleteTodo,
   toggleTodoCompleted,
+  updateTodo,
 } from "./modules/todoApp.js";
 import {
   renderApp,
@@ -20,11 +24,18 @@ import {
   bindTodoDeletion,
   bindTodoCompletion,
   bindTodoExpansion,
+  bindTodoEdit,
+  bindTodoEditForm,
 } from "./modules/dom.js";
 console.log(getProjects());
 
 function updateScreen() {
-  renderApp(getProjects(), getActiveProject(), getExpandedTodo());
+  renderApp(
+    getProjects(),
+    getActiveProject(),
+    getExpandedTodo(),
+    getEditingTodoId(),
+  );
 }
 
 bindProjectSelection((projectId) => {
@@ -56,6 +67,25 @@ bindTodoCompletion((todoId) => {
 
 bindTodoExpansion((todoId) => {
   setExpandedTodo(todoId);
+  updateScreen();
+});
+
+bindTodoEdit((todoId) => {
+  setEditingTodo(todoId);
+  updateScreen();
+});
+
+bindTodoEditForm((todoId, title, description, dueDate, priority) => {
+  updateTodo(
+    getActiveProject().id,
+    todoId,
+    title,
+    description,
+    dueDate,
+    priority,
+  );
+
+  clearEditingTodo();
   updateScreen();
 });
 

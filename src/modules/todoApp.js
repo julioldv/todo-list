@@ -3,6 +3,7 @@ import { createProject } from "./Project.js";
 let projects = [createProject("Default", "General tasks")];
 let activeProjectId = projects[0].id;
 let expandedTodoId = null;
+let editingTodoId = null;
 
 function getProjects() {
   return projects;
@@ -30,6 +31,18 @@ function setExpandedTodo(todoId) {
   } else {
     expandedTodoId = todoId;
   }
+}
+
+function getEditingTodoId() {
+  return editingTodoId;
+}
+
+function setEditingTodo(todoId) {
+  editingTodoId = todoId;
+}
+
+function clearEditingTodo() {
+  editingTodoId = null;
 }
 
 function addProject(title, description = "") {
@@ -78,15 +91,33 @@ function toggleTodoCompleted(projectId, todoId) {
   todo.completed = !todo.completed;
 }
 
+function updateTodo(projectId, todoId, title, description, dueDate, priority) {
+  const project = projects.find((project) => project.id === projectId);
+
+  if (!project) return;
+
+  const todo = project.todos.find((todo) => todo.id === todoId);
+
+  if (!todo) return;
+
+  todo.title = title;
+  todo.description = description;
+  todo.dueDate = dueDate;
+  todo.priority = priority;
+}
 export {
   getProjects,
   getActiveProject,
   setActiveProject,
   getExpandedTodo,
   setExpandedTodo,
+  getEditingTodoId,
+  setEditingTodo,
+  clearEditingTodo,
   addProject,
   deleteProject,
   addTodoToProject,
   deleteTodo,
   toggleTodoCompleted,
+  updateTodo,
 };
