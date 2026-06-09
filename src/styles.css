@@ -28,6 +28,14 @@ body {
   min-height: 100vh;
 }
 
+#project-form button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
 #project-sidebar {
   padding: 1.5rem;
   border-right: 1px solid var(--border);
@@ -46,6 +54,11 @@ body {
 }
 #project-list button {
   width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .project-item {
@@ -68,6 +81,11 @@ main {
   padding: 2rem;
 }
 
+#active-project-title {
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+}
+
 #todo-form {
   display: grid;
   width: min(100%, 800px);
@@ -88,6 +106,14 @@ main {
   gap: 1rem;
 }
 
+#todo-form button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
 .todo-card {
   background: white;
   padding: 1rem;
@@ -95,8 +121,71 @@ main {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+.todo-card:hover {
+  transform: translateY(-2px);
+}
+
 .todo-actions {
   display: flex;
   gap: 0.5rem;
   margin-top: 1rem;
+}
+
+.todo-completed {
+  opacity: 0.65;
+}
+
+.todo-completed h2 {
+  text-decoration: line-through;
+}
+
+.priority-badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.priority-low {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.priority-medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.priority-high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: white;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
 }

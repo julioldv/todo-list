@@ -48,11 +48,13 @@ function renderTodos(project, expandedTodoId, editingTodoId) {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.dataset.todoId = todo.id;
+    deleteButton.classList.add("btn", "btn-secondary");
     const completeButton = document.createElement("button");
     completeButton.textContent = todo.completed
       ? "Mark as uncompleted"
       : "Mark as completed";
     completeButton.dataset.completeTodoId = todo.id;
+    completeButton.classList.add("btn", "btn-primary");
 
     const card = document.createElement("div");
     card.dataset.expandTodoId = todo.id;
@@ -66,11 +68,16 @@ function renderTodos(project, expandedTodoId, editingTodoId) {
 
     dueDate.textContent = formattedDate;
 
-    const priority = document.createElement("p");
+    const priority = document.createElement("span");
     priority.textContent = todo.priority;
+    priority.classList.add("priority-badge", `priority-${todo.priority}`);
 
     const completed = document.createElement("p");
     completed.textContent = todo.completed ? "Completed" : "Uncompleted";
+
+    if (todo.completed) {
+      card.classList.add("todo-completed");
+    }
 
     card.append(title, dueDate, priority);
     if (isExpanded) {
@@ -126,6 +133,7 @@ function renderTodos(project, expandedTodoId, editingTodoId) {
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
         editButton.dataset.editTodoId = todo.id;
+        editButton.classList.add("btn", "btn-danger");
 
         actions.append(editButton, completeButton, deleteButton);
 
