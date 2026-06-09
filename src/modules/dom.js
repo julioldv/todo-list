@@ -22,6 +22,7 @@ function renderProjects(projects) {
     const projectButton = document.createElement("button");
     projectButton.textContent = project.title;
     projectButton.dataset.projectId = project.id;
+    projectButton.classList.add("project-button");
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
