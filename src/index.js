@@ -95,16 +95,4 @@ bindTodoEditForm((todoId, title, description, dueDate, priority) => {
   updateScreen();
 });
 
-const studyProject = addProject("Study", "Programming tasks");
-
-const todo1 = createTodo(
-  "Study modules",
-  "Review ES modules and imports",
-  "2026-06-05",
-  "high",
-);
-
-addTodoToProject(studyProject.id, todo1);
-setActiveProject(studyProject.id);
-
 updateScreen();
