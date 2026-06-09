@@ -19,6 +19,8 @@ function clearElement(element) {
 function renderProjects(projects) {
   clearElement(aside);
   for (const project of projects) {
+    const projectContainer = document.createElement("div");
+    projectContainer.classList.add("project-item");
     const projectButton = document.createElement("button");
     projectButton.textContent = project.title;
     projectButton.dataset.projectId = project.id;
@@ -28,9 +30,8 @@ function renderProjects(projects) {
     deleteButton.textContent = "Delete";
     deleteButton.dataset.deleteProjectId = project.id;
 
-    const container = document.createElement("div");
-    container.append(projectButton, deleteButton);
-    aside.append(container);
+    projectContainer.append(projectButton, deleteButton);
+    aside.append(projectContainer);
   }
 }
 
@@ -40,6 +41,9 @@ function renderTodos(project, expandedTodoId, editingTodoId) {
   for (const todo of project.todos) {
     const isExpanded = todo.id === expandedTodoId;
     const isEditing = todo.id === editingTodoId;
+
+    const actions = document.createElement("div");
+    actions.classList.add("todo-actions");
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
@@ -123,13 +127,9 @@ function renderTodos(project, expandedTodoId, editingTodoId) {
         editButton.textContent = "Edit";
         editButton.dataset.editTodoId = todo.id;
 
-        card.append(
-          description,
-          completed,
-          editButton,
-          completeButton,
-          deleteButton,
-        );
+        actions.append(editButton, completeButton, deleteButton);
+
+        card.append(description, completed, actions);
       }
     }
 
