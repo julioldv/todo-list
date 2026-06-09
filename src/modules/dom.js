@@ -1,3 +1,4 @@
+import { parseISO, format } from "date-fns";
 const aside = document.querySelector("#project-list");
 const title = document.querySelector("#active-project-title");
 const todoList = document.querySelector("#todo-list");
@@ -50,12 +51,15 @@ function renderTodos(project, expandedTodoId, editingTodoId) {
 
     const card = document.createElement("div");
     card.dataset.expandTodoId = todo.id;
+    card.classList.add("todo-card");
 
     const title = document.createElement("h2");
     title.textContent = todo.title;
 
     const dueDate = document.createElement("p");
-    dueDate.textContent = todo.dueDate;
+    const formattedDate = format(parseISO(todo.dueDate), "MMM d, yyyy");
+
+    dueDate.textContent = formattedDate;
 
     const priority = document.createElement("p");
     priority.textContent = todo.priority;

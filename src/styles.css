@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #2563eb;
+  --danger: #dc2626;
+  --radius: 12px;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+}
+
+#project-sidebar {
+  padding: 1.5rem;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+}
+
+main {
+  padding: 2rem;
+}
+
+#project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+#project-list button {
+  width: 100%;
+}
+
+#todo-form {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+#todo-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.todo-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+}
