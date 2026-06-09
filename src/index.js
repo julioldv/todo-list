@@ -1,4 +1,5 @@
 import "./styles.css";
+import { saveData, loadData } from "./modules/storage.js";
 import { createTodo } from "./modules/Todo.js";
 import {
   getProjects,
@@ -15,6 +16,8 @@ import {
   deleteTodo,
   toggleTodoCompleted,
   updateTodo,
+  getAppState,
+  loadAppState,
 } from "./modules/todoApp.js";
 import {
   renderApp,
@@ -30,6 +33,17 @@ import {
 } from "./modules/dom.js";
 console.log(getProjects());
 
+const savedState = loadData();
+
+if (savedState) {
+  loadAppState(savedState);
+}
+
+function saveAndRender() {
+  saveData(getAppState());
+  updateScreen();
+}
+
 function updateScreen() {
   renderApp(
     getProjects(),
@@ -41,44 +55,44 @@ function updateScreen() {
 
 bindProjectSelection((projectId) => {
   setActiveProject(projectId);
-  updateScreen();
+  saveAndRender();
 });
 
 bindProjectForm((title) => {
   const newProject = addProject(title);
   setActiveProject(newProject.id);
-  updateScreen();
+  saveAndRender();
 });
 
 bindProjectDeletion((projectId) => {
   deleteProject(projectId);
-  updateScreen();
+  saveAndRender();
 });
 
 bindTodoForm((title, description, dueDate, priority) => {
   const todo = createTodo(title, description, dueDate, priority);
   addTodoToProject(getActiveProject().id, todo);
-  updateScreen();
+  saveAndRender();
 });
 
 bindTodoDeletion((todoId) => {
   deleteTodo(getActiveProject().id, todoId);
-  updateScreen();
+  saveAndRender();
 });
 
 bindTodoCompletion((todoId) => {
   toggleTodoCompleted(getActiveProject().id, todoId);
-  updateScreen();
+  saveAndRender();
 });
 
 bindTodoExpansion((todoId) => {
   setExpandedTodo(todoId);
-  updateScreen();
+  saveAndRender();
 });
 
 bindTodoEdit((todoId) => {
   setEditingTodo(todoId);
-  updateScreen();
+  saveAndRender();
 });
 
 bindTodoEditForm((todoId, title, description, dueDate, priority) => {

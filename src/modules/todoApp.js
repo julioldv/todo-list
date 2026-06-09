@@ -110,6 +110,23 @@ function updateTodo(projectId, todoId, title, description, dueDate, priority) {
   todo.dueDate = dueDate;
   todo.priority = priority;
 }
+
+function getAppState() {
+  return {
+    projects,
+    activeProjectId,
+    expandedTodoId,
+    editingTodoId,
+  };
+}
+
+function loadAppState(savedState) {
+  projects = savedState.projects;
+  activeProjectId = savedState.activeProjectId;
+  expandedTodoId = savedState.expandedTodoId;
+  editingTodoId = savedState.editingTodoId;
+}
+
 export {
   getProjects,
   getActiveProject,
@@ -125,4 +142,6 @@ export {
   deleteTodo,
   toggleTodoCompleted,
   updateTodo,
+  getAppState,
+  loadAppState,
 };
