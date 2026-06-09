@@ -21,7 +21,14 @@ function renderProjects(projects) {
     const projectButton = document.createElement("button");
     projectButton.textContent = project.title;
     projectButton.dataset.projectId = project.id;
-    aside.append(projectButton);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.dataset.deleteProjectId = project.id;
+
+    const container = document.createElement("div");
+    container.append(projectButton, deleteButton);
+    aside.append(container);
   }
 }
 
@@ -154,6 +161,16 @@ function bindProjectForm(handler) {
   });
 }
 
+function bindProjectDeletion(handler) {
+  aside.addEventListener("click", (event) => {
+    const deleteButton = event.target.closest("[data-delete-project-id]");
+
+    if (!deleteButton) return;
+
+    handler(deleteButton.dataset.deleteProjectId);
+  });
+}
+
 function bindTodoForm(handler) {
   todoForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -240,6 +257,7 @@ export {
   bindProjectSelection,
   bindProjectForm,
   bindTodoForm,
+  bindProjectDeletion,
   bindTodoDeletion,
   bindTodoCompletion,
   bindTodoExpansion,

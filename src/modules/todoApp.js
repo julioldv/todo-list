@@ -52,13 +52,18 @@ function addProject(title, description = "") {
 }
 
 function deleteProject(projectId) {
+  if (projects.length === 1) return;
+
   const index = projects.findIndex((project) => project.id === projectId);
 
-  if (index !== -1) {
-    projects.splice(index, 1);
+  if (index === -1) return;
+
+  projects.splice(index, 1);
+
+  if (activeProjectId === projectId) {
+    activeProjectId = projects[0].id;
   }
 }
-
 function addTodoToProject(projectId, todo) {
   const project = projects.find((project) => project.id === projectId);
 

@@ -20,6 +20,7 @@ import {
   renderApp,
   bindProjectSelection,
   bindProjectForm,
+  bindProjectDeletion,
   bindTodoForm,
   bindTodoDeletion,
   bindTodoCompletion,
@@ -46,6 +47,11 @@ bindProjectSelection((projectId) => {
 bindProjectForm((title) => {
   const newProject = addProject(title);
   setActiveProject(newProject.id);
+  updateScreen();
+});
+
+bindProjectDeletion((projectId) => {
+  deleteProject(projectId);
   updateScreen();
 });
 
