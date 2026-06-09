@@ -52,6 +52,18 @@ function deleteTodo(projectId, todoId) {
   }
 }
 
+function toggleTodoCompleted(projectId, todoId) {
+  const project = projects.find((project) => project.id === projectId);
+
+  if (!project) return;
+
+  const todo = project.todos.find((todo) => todo.id === todoId);
+
+  if (!todo) return;
+
+  todo.completed = !todo.completed;
+}
+
 export {
   getProjects,
   getActiveProject,
@@ -60,4 +72,5 @@ export {
   deleteProject,
   addTodoToProject,
   deleteTodo,
+  toggleTodoCompleted,
 };

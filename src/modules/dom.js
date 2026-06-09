@@ -32,6 +32,11 @@ function renderTodos(project) {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.dataset.todoId = todo.id;
+    const completeButton = document.createElement("button");
+    completeButton.textContent = todo.completed
+      ? "Mark as uncompleted"
+      : "Mark as completed";
+    completeButton.dataset.completeTodoId = todo.id;
 
     const card = document.createElement("div");
 
@@ -44,7 +49,17 @@ function renderTodos(project) {
     const priority = document.createElement("p");
     priority.textContent = todo.priority;
 
-    card.append(title, dueDate, priority, deleteButton);
+    const completed = document.createElement("p");
+    completed.textContent = todo.completed ? "Completed" : "Uncompleted";
+
+    card.append(
+      title,
+      dueDate,
+      priority,
+      completed,
+      completeButton,
+      deleteButton,
+    );
     todoList.append(card);
   }
 }
@@ -105,6 +120,16 @@ function bindTodoDeletion(handler) {
   });
 }
 
+function bindTodoCompletion(handler) {
+  todoList.addEventListener("click", (event) => {
+    const toggleButton = event.target.closest("[data-complete-todo-id]");
+
+    if (!toggleButton) return;
+
+    handler(toggleButton.dataset.completeTodoId);
+  });
+}
+
 export {
   renderProjects,
   renderTodos,
@@ -113,4 +138,5 @@ export {
   bindProjectForm,
   bindTodoForm,
   bindTodoDeletion,
+  bindTodoCompletion,
 };

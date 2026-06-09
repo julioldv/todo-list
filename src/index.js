@@ -8,6 +8,7 @@ import {
   deleteProject,
   addTodoToProject,
   deleteTodo,
+  toggleTodoCompleted,
 } from "./modules/todoApp.js";
 import {
   renderApp,
@@ -15,6 +16,7 @@ import {
   bindProjectForm,
   bindTodoForm,
   bindTodoDeletion,
+  bindTodoCompletion,
 } from "./modules/dom.js";
 console.log(getProjects());
 
@@ -41,6 +43,11 @@ bindTodoForm((title, description, dueDate, priority) => {
 
 bindTodoDeletion((todoId) => {
   deleteTodo(getActiveProject().id, todoId);
+  updateScreen();
+});
+
+bindTodoCompletion((todoId) => {
+  toggleTodoCompleted(getActiveProject().id, todoId);
   updateScreen();
 });
 
